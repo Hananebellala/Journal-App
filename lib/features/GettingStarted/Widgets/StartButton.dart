@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/GettingStarted/Screens/Book.dart';
-
+import 'package:my_journey/features/GettingStarted/Screens/Starting.dart';
 
 class StartButton extends StatelessWidget {
   const StartButton({super.key});
@@ -19,7 +19,7 @@ class StartButton extends StatelessWidget {
       onPressed: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const Book()),
+          MaterialPageRoute(builder: (context) => const Starting()),
         );
       },
       child: const Text(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_journey/features/GettingStarted/Widgets/StartButton2.dart';
 import 'package:my_journey/features/GettingStarted/Widgets/NextButton2.dart';
 
 class LifeGallery extends StatelessWidget {
