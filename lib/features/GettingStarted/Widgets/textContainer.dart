@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TextContainer extends StatelessWidget {
+  final TextEditingController controller;
+
+  const TextContainer({required this.controller, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +15,8 @@ class TextContainer extends StatelessWidget {
         color: Colors.grey[200], // Background color
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: const TextField(
+      child: TextField(
+        controller: controller,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(

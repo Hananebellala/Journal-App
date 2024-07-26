@@ -12,7 +12,7 @@ class LifeGallery extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/Bullet journal-bro 1.png'),
+            Image.asset('assets/Online gallery-bro 1.png'),
             const SizedBox(height: 20),
             Text(
               'Life Gallery',
