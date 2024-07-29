@@ -72,7 +72,10 @@ class _StartingState extends State<Starting> {
             Padding(
               padding: const EdgeInsets.only(
                   left: 52.0), // Left padding for TextContainer
-              child: TextContainer(controller: _nameController),
+              child: TextContainer(
+                controller: _nameController,
+                obscureText: false,
+              ),
             ),
             const SizedBox(height: 27),
             const Padding(
@@ -91,12 +94,15 @@ class _StartingState extends State<Starting> {
             Padding(
               padding: const EdgeInsets.only(
                   left: 52.0), // Left padding for TextContainer
-              child: TextContainer(controller: _passwordController),
+              child: TextContainer(
+                controller: _passwordController,
+                obscureText: true,
+              ),
             ),
             const SizedBox(height: 40),
             Center(child: Image.asset('assets/Personal settings-bro 1.png')),
             const SizedBox(height: 54),
-            Center(child: Start())
+            Center(child: Start(isButtonenabled: isfilled))
           ],
         ),
       ),

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class TextContainer extends StatelessWidget {
   final TextEditingController controller;
+  final bool obscureText;
 
-  const TextContainer({required this.controller, Key? key}) : super(key: key);
+  const TextContainer({required this.controller,required this.obscureText, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,6 +17,7 @@ class TextContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: TextField(
+        obscureText: obscureText,
         controller: controller,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
