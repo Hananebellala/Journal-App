@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
+import 'package:my_journey/features/HomePage/Widgets/DayButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
@@ -118,6 +119,27 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
+            const SizedBox(height: 35),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: const [
+                  DaysButton(day: 'MON'),
+                  SizedBox(width: 4.5),
+                  DaysButton(day: 'TUE'),
+                  SizedBox(width: 4.5),
+                  DaysButton(day: 'WED'),
+                  SizedBox(width: 4.5),
+                  DaysButton(day: 'THU'),
+                  SizedBox(width: 4.5),
+                  DaysButton(day: 'FRI'),
+                  SizedBox(width: 4.5),
+                  DaysButton(day: 'SAT'),
+                  SizedBox(width: 4.5),
+                  DaysButton(day: 'SUN'),
+                ],
+              ),
+            )
           ],
         ),
       ),

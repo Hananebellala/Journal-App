@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+
 import 'package:my_journey/features/LoadingPage/Screens/Loading.dart';
-import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
+
 
 void main()  {
   
