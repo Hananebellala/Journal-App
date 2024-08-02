@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:my_journey/features/GettingStarted/Widgets/Skip.dart';
+import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
 import 'package:my_journey/features/GettingStarted/Widgets/Finish.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 
+
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  const Profile({required this.userId, required this.name, required this.password, super.key});
+  final int userId;
+  final String name;
+  final String password;
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -20,22 +25,46 @@ class _ProfileState extends State<Profile> {
   Future getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      }
-    });
+    if (pickedFile != null) {
+      String filePath = pickedFile.path;
+      print('Picked file path: $filePath'); // Debugging output
+
+      User updatedUser = User(
+          id: widget.userId,
+          name: widget.name,
+          password: widget.password,
+          profilePic: filePath);
+      UserDao userDao = UserDao();
+      int result = await userDao.updateUser(updatedUser);
+      print('User updated: $result'); // Debugging output
+
+      setState(() {
+        _image = File(filePath);
+      });
+    }
   }
 
   // Image Picker function to get image from camera
   Future getImageFromCamera() async {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      }
-    });
+    if (pickedFile != null) {
+      String filePath = pickedFile.path;
+      print('Picked file path: $filePath'); // Debugging output
+
+      User updatedUser = User(
+          id: widget.userId,
+          name: widget.name,
+          password: widget.password,
+          profilePic: filePath);
+      UserDao userDao = UserDao();
+      int result = await userDao.updateUser(updatedUser);
+      print('User updated: $result'); // Debugging output
+
+      setState(() {
+        _image = File(filePath);
+      });
+    }
   }
 
   Future showOptions() async {

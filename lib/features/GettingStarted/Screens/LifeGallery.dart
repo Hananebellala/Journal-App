@@ -3,6 +3,7 @@ import 'package:my_journey/features/GettingStarted/Widgets/NextButton2.dart';
 
 class LifeGallery extends StatelessWidget {
   const LifeGallery({super.key});
+   
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class LifeGallery extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            
             Image.asset('assets/Online gallery-bro 1.png'),
             const SizedBox(height: 20),
             Text(

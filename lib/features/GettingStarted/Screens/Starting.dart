@@ -12,6 +12,7 @@ class Starting extends StatefulWidget {
 class _StartingState extends State<Starting> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   bool isfilled = false;
 
   @override
@@ -75,6 +76,7 @@ class _StartingState extends State<Starting> {
               child: TextContainer(
                 controller: _nameController,
                 obscureText: false,
+                number: false,
               ),
             ),
             const SizedBox(height: 27),
@@ -95,14 +97,18 @@ class _StartingState extends State<Starting> {
               padding: const EdgeInsets.only(
                   left: 52.0), // Left padding for TextContainer
               child: TextContainer(
-                controller: _passwordController,
-                obscureText: true,
-              ),
+                  controller: _passwordController,
+                  obscureText: true,
+                  number: true),
             ),
             const SizedBox(height: 40),
             Center(child: Image.asset('assets/Personal settings-bro 1.png')),
             const SizedBox(height: 54),
-            Center(child: Start(isButtonenabled: isfilled))
+            Center(
+                child: Start(
+                    isButtonenabled: isfilled,
+                    name: _nameController.text,
+                    password: _passwordController.text))
           ],
         ),
       ),

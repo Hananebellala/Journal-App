@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/GettingStarted/Screens/Starting.dart';
+import 'package:my_journey/features/HomePage/Screens/home.dart';
 
 class FinishButton extends StatelessWidget {
+
+  
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -16,7 +19,7 @@ class FinishButton extends StatelessWidget {
       onPressed: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const Starting()),
+          MaterialPageRoute(builder: (context) => const Home()),
         );
       },
       child: const Text(

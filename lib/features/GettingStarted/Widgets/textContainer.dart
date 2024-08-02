@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class TextContainer extends StatelessWidget {
   final TextEditingController controller;
   final bool obscureText;
+  final bool number;
 
-  const TextContainer({required this.controller,required this.obscureText, Key? key}) : super(key: key);
+  const TextContainer(
+      {required this.controller, required this.obscureText, required this.number, Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,6 +22,7 @@ class TextContainer extends StatelessWidget {
       child: TextField(
         obscureText: obscureText,
         controller: controller,
+        keyboardType: number ? TextInputType.number : TextInputType.text,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
