@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
 import 'package:my_journey/features/HomePage/Widgets/DayButton.dart';
+import 'package:my_journey/features/HomePage/Widgets/NavBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
@@ -143,6 +144,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(currentIndex: 0) ,
     );
   }
 }

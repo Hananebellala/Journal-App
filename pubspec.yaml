@@ -37,6 +37,15 @@ flutter:
     - assets/Frame 1 (4).png
     - assets/Personal settings-bro 1.png
     - assets/Profilepic.png
+    - assets/Settings_off.png
+    - assets/Settings_on.png
+    - assets/Gallery_on.png
+    - assets/Gallery_off.png
+    - assets/Edit_on.png
+    - assets/Edit_off.png
+    - assets/home_off.png
+    - assets/Home_on.png
+    - assets/arrow.png
   fonts:
     - family: CormorantUpright
       fonts:
