@@ -46,6 +46,8 @@ flutter:
     - assets/home_off.png
     - assets/Home_on.png
     - assets/arrow.png
+    - assets/Empty.png
+    - assets/edit.png
   fonts:
     - family: CormorantUpright
       fonts:

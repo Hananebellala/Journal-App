@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
 import 'package:my_journey/features/HomePage/Widgets/DayButton.dart';
 import 'package:my_journey/features/HomePage/Widgets/NavBar.dart';
+import 'package:my_journey/features/HomePage/Widgets/Empty.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
@@ -15,6 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String username = '';
   File? _image;
+  String selectedDay = '';
 
   Future<int?> getCurrentUserId() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,7 +29,8 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _loadUsername();
-    _loadProfilePicture(); // Load the profile picture as well
+    _loadProfilePicture();
+    _setInitialDay();
   }
 
   Future<void> _loadProfilePicture() async {
@@ -36,9 +39,7 @@ class _HomeState extends State<Home> {
       UserDao userDao = UserDao();
       User? user = await userDao.getUser(userId);
 
-      if (user != null &&
-          user.profilePic != null &&
-          user.profilePic!.isNotEmpty) {
+      if (user != null && user.profilePic != null && user.profilePic!.isNotEmpty) {
         if (File(user.profilePic!).existsSync()) {
           setState(() {
             _image = File(user.profilePic!);
@@ -74,6 +75,41 @@ class _HomeState extends State<Home> {
     } catch (e) {
       print('Error loading username: $e'); // Catch and print any exceptions
     }
+  }
+
+  void _setInitialDay() {
+    final now = DateTime.now();
+    final weekday = now.weekday;
+    setState(() {
+      selectedDay = _mapWeekdayToDay(weekday);
+    });
+  }
+
+  String _mapWeekdayToDay(int weekday) {
+    switch (weekday) {
+      case DateTime.monday:
+        return 'MON';
+      case DateTime.tuesday:
+        return 'TUE';
+      case DateTime.wednesday:
+        return 'WED';
+      case DateTime.thursday:
+        return 'THU';
+      case DateTime.friday:
+        return 'FRI';
+      case DateTime.saturday:
+        return 'SAT';
+      case DateTime.sunday:
+        return 'SUN';
+      default:
+        return 'MON';
+    }
+  }
+
+  void _onDaySelected(String day) {
+    setState(() {
+      selectedDay = day;
+    });
   }
 
   @override
@@ -124,27 +160,56 @@ class _HomeState extends State<Home> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: const [
-                  DaysButton(day: 'MON'),
-                  SizedBox(width: 4.5),
-                  DaysButton(day: 'TUE'),
-                  SizedBox(width: 4.5),
-                  DaysButton(day: 'WED'),
-                  SizedBox(width: 4.5),
-                  DaysButton(day: 'THU'),
-                  SizedBox(width: 4.5),
-                  DaysButton(day: 'FRI'),
-                  SizedBox(width: 4.5),
-                  DaysButton(day: 'SAT'),
-                  SizedBox(width: 4.5),
-                  DaysButton(day: 'SUN'),
+                children: [
+                  DaysButton(
+                    day: 'MON',
+                    isSelected: selectedDay == 'MON',
+                    onTap: () => _onDaySelected('MON'),
+                  ),
+                  const SizedBox(width: 4.5),
+                  DaysButton(
+                    day: 'TUE',
+                    isSelected: selectedDay == 'TUE',
+                    onTap: () => _onDaySelected('TUE'),
+                  ),
+                  const SizedBox(width: 4.5),
+                  DaysButton(
+                    day: 'WED',
+                    isSelected: selectedDay == 'WED',
+                    onTap: () => _onDaySelected('WED'),
+                  ),
+                  const SizedBox(width: 4.5),
+                  DaysButton(
+                    day: 'THU',
+                    isSelected: selectedDay == 'THU',
+                    onTap: () => _onDaySelected('THU'),
+                  ),
+                  const SizedBox(width: 4.5),
+                  DaysButton(
+                    day: 'FRI',
+                    isSelected: selectedDay == 'FRI',
+                    onTap: () => _onDaySelected('FRI'),
+                  ),
+                  const SizedBox(width: 4.5),
+                  DaysButton(
+                    day: 'SAT',
+                    isSelected: selectedDay == 'SAT',
+                    onTap: () => _onDaySelected('SAT'),
+                  ),
+                  const SizedBox(width: 4.5),
+                  DaysButton(
+                    day: 'SUN',
+                    isSelected: selectedDay == 'SUN',
+                    onTap: () => _onDaySelected('SUN'),
+                  ),
                 ],
               ),
-            )
+            ),
+            Empty(),
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(currentIndex: 0) ,
+      bottomNavigationBar: NavBar(currentIndex: 0),
     );
   }
 }
