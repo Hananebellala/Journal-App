@@ -3,7 +3,8 @@ import 'package:my_journey/features/LoadingPage/Widgets/StartButton.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Loading extends StatefulWidget {
-  const Loading({super.key});
+  final bool islogged;
+  const Loading({super.key, required this.islogged});
 
   @override
   State<Loading> createState() => _LoadingState();
@@ -16,7 +17,8 @@ class _LoadingState extends State<Loading> {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const Loadingg()),
+        MaterialPageRoute(
+            builder: (context) => Loadingg(islogged: widget.islogged)),
       );
     });
   }
@@ -59,7 +61,8 @@ class _LoadingState extends State<Loading> {
 }
 
 class Loadingg extends StatelessWidget {
-  const Loadingg({super.key});
+  final bool islogged;
+  const Loadingg({super.key, required this.islogged});
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +95,7 @@ class Loadingg extends StatelessWidget {
                   )),
               SizedBox(
                   height: 100), // Add some spacing between the text and button
-              StartButton(),
+              StartButton(islogged: islogged),
             ],
           ),
         ),

@@ -30,6 +30,11 @@ class _StartState extends State<Start> {
     print('Stored userId: $userId'); // Debugging output
   }
 
+  Future<void> saveUserSession(int userId) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setInt('userId', userId);
+}
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -52,6 +57,7 @@ class _StartState extends State<Start> {
               int userId = await _userDao.createUser(newUser);
               print('User created with ID: $userId ');
               _storeUserId(userId);
+              await saveUserSession(userId);
 
               Navigator.pushReplacement(
                 context,

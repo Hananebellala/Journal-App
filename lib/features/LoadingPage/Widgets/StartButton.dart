@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/GettingStarted/Screens/Capture.dart';
-import 'package:my_journey/features/LoadingPage/Screens/Loading.dart';
+import 'package:my_journey/features/HomePage/Screens/Home.dart';
 
 class StartButton extends StatelessWidget {
-  const StartButton({super.key});
+  const StartButton({super.key, required this.islogged});
 
+  final bool islogged;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -19,7 +20,9 @@ class StartButton extends StatelessWidget {
       onPressed: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const Capture()),
+          MaterialPageRoute(
+            builder: (context) => islogged ? const Home() : const Capture(),
+          ),
         );
       },
       child: const Text(
