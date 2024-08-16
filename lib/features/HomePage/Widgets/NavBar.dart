@@ -40,7 +40,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 84,
       decoration: const BoxDecoration(
         color: Color(0xFF7469B6),
         borderRadius: BorderRadius.only(
@@ -62,8 +62,8 @@ class NavBar extends StatelessWidget {
                 currentIndex == 0
                     ? 'assets/Home_on.png'
                     : 'assets/home_off.png',
-                width: 34.44,
-                height: 34.44,
+                width: currentIndex == 0 ? 34.44 : 30.0,
+                height: currentIndex == 0 ? 34.44 : 30.0,
               ),
               label: '',
             ),
@@ -72,8 +72,8 @@ class NavBar extends StatelessWidget {
                 currentIndex == 1
                     ? 'assets/Edit_on.png'
                     : 'assets/Edit_off.png',
-                width: 34.44,
-                height: 34.44,
+                width: currentIndex == 1 ? 40 : 30.0,
+                height: currentIndex == 1 ? 40 : 30.0,
               ),
               label: '',
             ),
@@ -82,8 +82,8 @@ class NavBar extends StatelessWidget {
                 currentIndex == 2
                     ? 'assets/Gallery_on.png'
                     : 'assets/Gallery_off.png',
-                width: 34.44,
-                height: 34.44,
+                width: currentIndex == 2 ? 34.44 : 30.0,
+                height: currentIndex == 2 ? 34.44 : 30.0,
               ),
               label: '',
             ),
@@ -92,8 +92,8 @@ class NavBar extends StatelessWidget {
                 currentIndex == 3
                     ? 'assets/Settings_on.png'
                     : 'assets/Settings_off.png',
-                width: 34.44,
-                height: 34.44,
+                width: currentIndex == 3 ? 34.44 : 30.0,
+                height: currentIndex == 3 ? 34.44 : 30.0,
               ),
               label: '',
             ),
