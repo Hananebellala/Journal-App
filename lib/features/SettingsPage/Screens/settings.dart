@@ -25,10 +25,10 @@ class _SettingsState extends State<Settings> {
                 child: Text(
                   'Settings',
                   style: TextStyle(
-                    fontSize: 35, // Adjust the font size
-                    color: Color(0xFF1E1077),
+                    fontSize: 30, // Adjust the font size
+                    color: Color(0xFF000000),
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'CormorantUpright',
+                    fontFamily: 'CourierPrime',
                   ),
                 ),
               ),

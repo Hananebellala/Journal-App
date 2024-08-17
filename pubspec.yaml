@@ -49,6 +49,7 @@ flutter:
     - assets/arrow.png
     - assets/Empty.png
     - assets/edit.png
+    - assets/Back.png
   fonts:
     - family: CormorantUpright
       fonts:

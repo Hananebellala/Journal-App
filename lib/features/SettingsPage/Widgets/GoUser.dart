@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
+import 'package:my_journey/features/SettingsPage/Screens/userpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GoUser extends StatefulWidget {
@@ -113,16 +114,25 @@ class _GoUserState extends State<GoUser> {
                 '$username',
                 style: TextStyle(
                   fontSize: 20, // Adjust the font size
-                  color: Color(0xFF1E1077),
+                  color: Color(0xFF000000),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'CourierPrime',
                 ),
               ),
               const SizedBox(width: 69),
-              Image.asset(
-                'assets/arrow.png',
-                width: 38,
-                height: 38,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const UserPage()),
+                  );
+                },
+                child: Image.asset(
+                  'assets/arrow.png',
+                  fit: BoxFit.cover,
+                  width: 38,
+                  height: 38,
+                ),
               )
             ],
           )),
