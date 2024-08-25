@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/SettingsPage/Screens/settings.dart';
+import 'package:my_journey/features/SettingsPage/Widgets/customSwitch.dart';
+import 'package:my_journey/features/SettingsPage/Widgets/Notifications.dart';
 
 class General extends StatefulWidget {
   const General({super.key});
@@ -70,7 +72,7 @@ class _GeneralState extends State<General> {
                 Container(
                   width: 50, // Width of the switch
                   height: 27, // Height of the switch
-                  child: CustomSwitch(
+                  child: Notifications(
                     isSwitched: _isSwitched,
                     onChanged: (bool value) {
                       setState(() {
@@ -171,29 +173,6 @@ class _GeneralState extends State<General> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class CustomSwitch extends StatelessWidget {
-  final bool isSwitched;
-  final ValueChanged<bool> onChanged;
-
-  const CustomSwitch({
-    required this.isSwitched,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Switch(
-      value: isSwitched,
-      onChanged: onChanged,
-      activeColor: const Color(0xFF7469B6), // Color when ON
-      inactiveThumbColor: const Color(0xFF7469B6), // Circle color when OFF
-      inactiveTrackColor: const Color(0xFFFFF6E9), // Track color when OFF
-      // Customize border of the switch
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
   }
 }
