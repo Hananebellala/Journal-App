@@ -32,7 +32,7 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         password TEXT,
-        profilePic TEXT,
+        profilePic TEXT
       )
     ''');
 

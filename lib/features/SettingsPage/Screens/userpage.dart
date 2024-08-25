@@ -24,11 +24,22 @@ class _UserPageState extends State<UserPage> {
   String? password;
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
+  bool isfilled = false;
 
   @override
   void initState() {
     super.initState();
     _loadUserData();
+    _loadProfilePicture();
+    _namecontroller.addListener(_checkfields);
+    _passwordcontroller.addListener(_checkfields);
+  }
+
+  void _checkfields() {
+    setState(() {
+      isfilled = _namecontroller.text.isNotEmpty ||
+          _passwordcontroller.text.isNotEmpty;
+    });
   }
 
   @override
@@ -43,9 +54,39 @@ class _UserPageState extends State<UserPage> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       userId = prefs.getInt('currentUserId');
-      username = prefs.getString('username') ?? 'Default Username';
-      password = prefs.getString('password') ?? 'Default Password';
+      username = prefs.getString('username') ?? '';
+      password = prefs.getString('password') ?? '';
+      _namecontroller.text = username ?? '';
+      _passwordcontroller.text = password ?? '';
+      String? profilePicPath = prefs.getString('profilePic');
+      if (profilePicPath != null) {
+        _image = File(profilePicPath);
+      }
     });
+  }
+
+  Future<int?> getCurrentUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final userId = prefs.getInt('currentUserId');
+    return userId;
+  }
+
+  Future<void> _loadProfilePicture() async {
+    int? userId = await getCurrentUserId();
+    if (userId != null) {
+      UserDao userDao = UserDao();
+      User? user = await userDao.getUser(userId);
+
+      if (user != null &&
+          user.profilePic != null &&
+          user.profilePic!.isNotEmpty) {
+        if (File(user.profilePic!).existsSync()) {
+          setState(() {
+            _image = File(user.profilePic!);
+          });
+        }
+      }
+    }
   }
 
   // Image Picker function to get image from gallery
@@ -75,6 +116,25 @@ class _UserPageState extends State<UserPage> {
       // Handle the null case, perhaps by showing an error message
       print("User data is missing.");
     }
+  }
+
+  Future<void> updateUserData(int userId, String username, String password,
+      String? profilePicPath) async {
+    User updatedUser = User(
+      id: userId,
+      name: username,
+      password: password,
+      profilePic: profilePicPath,
+    );
+    UserDao userDao = UserDao();
+    await userDao.updateUser(updatedUser);
+  }
+
+  Future<void> _saveProfilePicPath(String path) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('profilePic', path);
+    // Reload user data to reflect changes
+    _loadUserData();
   }
 
   Future showOptions() async {
@@ -138,7 +198,8 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFAF3),
-      body: Column(children: [
+      body: SingleChildScrollView(
+          child: Column(children: [
         Padding(
             padding: EdgeInsets.only(top: 60, left: 30, right: 20),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -167,7 +228,7 @@ class _UserPageState extends State<UserPage> {
                 ),
               ),
             ])),
-        const SizedBox(height: 47),
+        const SizedBox(height: 40),
         Column(children: [
           Center(
               child: GestureDetector(
@@ -188,7 +249,7 @@ class _UserPageState extends State<UserPage> {
                     ),
             ),
           )),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           const Padding(
             padding: EdgeInsets.only(left: 25.0),
             child: Align(
@@ -204,7 +265,7 @@ class _UserPageState extends State<UserPage> {
               ),
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           Padding(
               padding: EdgeInsets.only(right: 25.0),
               child: Container(
@@ -248,7 +309,7 @@ class _UserPageState extends State<UserPage> {
                   ),
                 ),
               )),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           const Padding(
             padding: EdgeInsets.only(left: 25.0),
             child: Align(
@@ -264,7 +325,7 @@ class _UserPageState extends State<UserPage> {
               ),
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           Padding(
               padding: EdgeInsets.only(right: 25.0),
               child: Container(
@@ -308,8 +369,16 @@ class _UserPageState extends State<UserPage> {
                   ),
                 ),
               )),
+          const SizedBox(height: 35),
+          ResetButton(username: _namecontroller, password: _namecontroller),
+          const SizedBox(height: 30),
+          SaveButton(
+            username: _namecontroller,
+            password: _passwordcontroller,
+            profilePicPath: _image?.path,
+          ),
         ]),
-      ]),
+      ])),
       bottomNavigationBar: NavBar(currentIndex: 3),
     );
   }
