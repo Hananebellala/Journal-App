@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/HomePage/Widgets/NavBar.dart';
+import 'package:my_journey/features/WritePage/Widgets/Title.dart';
+import 'package:my_journey/features/WritePage/Widgets/DairyController.dart';
 import 'package:intl/intl.dart';
 
 class Write extends StatefulWidget {
@@ -10,6 +12,8 @@ class Write extends StatefulWidget {
 }
 
 class _WriteState extends State<Write> {
+  final TextEditingController title = TextEditingController();
+  final TextEditingController dairy = TextEditingController();
   String formattedDate = '';
 
   @override
@@ -38,7 +42,7 @@ class _WriteState extends State<Write> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 60, left: 30, right: 20),
+            padding: EdgeInsets.only(top: 60, left: 30, right: 20),
             child: Stack(
               children: [
                 Text(
@@ -71,6 +75,26 @@ class _WriteState extends State<Write> {
                 color: const Color(0xFF1E1077),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'CormorantUpright',
+              ),
+            ),
+          ),
+          const SizedBox(height: 30),
+          Flexible(
+            child: Center(
+              child: TitleContainer(
+                controller: title,
+                obscureText: false,
+                number: false,
+              ),
+            ),
+          ),
+          const SizedBox(height: 30),
+          Flexible(
+            child: Center(
+              child: DairyController(
+                controller: dairy,
+                obscureText: false,
+                number: false,
               ),
             ),
           ),
