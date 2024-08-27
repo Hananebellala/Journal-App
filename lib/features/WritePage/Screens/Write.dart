@@ -39,15 +39,43 @@ class _WriteState extends State<Write> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFAF3),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 60, left: 30, right: 20),
-            child: Stack(
-              children: [
-                Text(
-                  'Write about today',
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 60, left: 30, right: 20),
+                child: Stack(
+                  children: [
+                    Text(
+                      'Write about today',
+                      style: TextStyle(
+                        fontSize: 33,
+                        color: const Color(0xFF1E1077),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'CormorantUpright',
+                      ),
+                    ),
+                    Positioned(
+                      bottom:
+                          0, // Adjust the distance between text and underline
+                      left: 0,
+                      child: Container(
+                        width: 250, // Width of the underline, adjust as needed
+                        color: const Color(0xFF1E1077),
+                        height: 3.0, // Thickness of the underline
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, left: 140, right: 20),
+                child: Text(
+                  formattedDate.isNotEmpty
+                      ? formattedDate
+                      : 'Date not available',
                   style: TextStyle(
                     fontSize: 33,
                     color: const Color(0xFF1E1077),
@@ -55,51 +83,32 @@ class _WriteState extends State<Write> {
                     fontFamily: 'CormorantUpright',
                   ),
                 ),
-                Positioned(
-                  bottom: 0, // Adjust the distance between text and underline
-                  left: 0,
-                  child: Container(
-                    width: 250, // Width of the underline, adjust as needed
-                    color: const Color(0xFF1E1077),
-                    height: 3.0, // Thickness of the underline
+              ),
+              const SizedBox(height: 5),
+              Center(
+                child: TitleContainer(
+                  controller: title,
+                  obscureText: false,
+                  number: false,
+                ),
+              ),
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 1, left: 35),
+                  child: DairyController(
+                    controller: dairy,
+                    obscureText: false,
+                    number: false,
                   ),
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 140, right: 20),
-            child: Text(
-              formattedDate.isNotEmpty ? formattedDate : 'Date not available',
-              style: TextStyle(
-                fontSize: 33,
-                color: const Color(0xFF1E1077),
-                fontWeight: FontWeight.bold,
-                fontFamily: 'CormorantUpright',
               ),
-            ),
+            ],
           ),
-          const SizedBox(height: 5),
-          Center(
-            child: TitleContainer(
-              controller: title,
-              obscureText: false,
-              number: false,
-            ),
-          ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 1, left: 35),
-              child: DairyController(
-                controller: dairy,
-                obscureText: false,
-                number: false,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                bottom: 10.0), // Adjusts space between button and navbar
+          Positioned(
+            bottom:
+                20.0, // Positioning the button above the bottom of the screen
+            left: 0,
+            right: 0,
             child: Center(child: NextButton()),
           ),
         ],

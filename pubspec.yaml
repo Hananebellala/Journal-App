@@ -50,6 +50,7 @@ flutter:
     - assets/Empty.png
     - assets/edit.png
     - assets/Back.png
+    - assets/Frame 14.png
   fonts:
     - family: CormorantUpright
       fonts:

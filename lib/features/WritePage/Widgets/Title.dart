@@ -36,6 +36,7 @@ class TitleContainer extends StatelessWidget {
             fontSize: 25.0,
             color: Color(0xFF1E1E1E), // Style for hint text
             fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.bold,
             fontFamily: 'CormorantUpright', // Additional styling
           ),
           border: InputBorder.none, // Invisible border

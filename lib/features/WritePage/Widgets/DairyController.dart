@@ -51,8 +51,8 @@ class DairyController extends StatelessWidget {
                 border: InputBorder.none,
               ),
               style: TextStyle(
-                fontSize: 23.0,
-                fontFamily: 'CormorantUpright',
+                fontSize: 20.0,
+                fontFamily: 'CourierPrime',
                 color: Color(0xFF1E1E1E),
               ),
             ),
