@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/WritePage/Screens/Write2.dart';
 
-class SkipButton extends StatelessWidget {
+class NextButton extends StatelessWidget {
+  const NextButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

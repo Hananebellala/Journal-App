@@ -18,7 +18,7 @@ class TitleContainer extends StatelessWidget {
       width: 300,
       height: 50,
       decoration: BoxDecoration(
-        color: Colors.grey[200], // Background color
+        color: const Color(0xFFFFFAF3), // Background color
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: TextField(

@@ -18,7 +18,7 @@ class DairyController extends StatelessWidget {
       resizeToAvoidBottomInset: true, // Adjusts the layout for the keyboard
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 20.0),
+          padding: EdgeInsets.only(top: 20, left: 12, right: 12),
           child: Container(
             width: 320,
             padding: EdgeInsets.symmetric(horizontal: 12.0),
@@ -33,7 +33,8 @@ class DairyController extends StatelessWidget {
             child: TextField(
               obscureText: obscureText,
               controller: controller,
-              keyboardType: number ? TextInputType.number : TextInputType.multiline,
+              keyboardType:
+                  number ? TextInputType.number : TextInputType.multiline,
               maxLines: null,
               textAlignVertical: TextAlignVertical.top,
               decoration: InputDecoration(
@@ -61,5 +62,3 @@ class DairyController extends StatelessWidget {
     );
   }
 }
-
-

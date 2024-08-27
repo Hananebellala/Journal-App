@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_journey/features/GettingStarted/Screens/Starting.dart';
 import 'package:my_journey/features/HomePage/Screens/home.dart';
 
-class SkipButton extends StatelessWidget {
+class SaveButton extends StatelessWidget {
+  const SaveButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

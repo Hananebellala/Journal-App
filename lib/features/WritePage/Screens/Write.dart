@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/HomePage/Widgets/NavBar.dart';
 import 'package:my_journey/features/WritePage/Widgets/Title.dart';
+import 'package:my_journey/features/WritePage/Widgets/NextButton.dart';
 import 'package:my_journey/features/WritePage/Widgets/DairyController.dart';
 import 'package:intl/intl.dart';
 
@@ -42,7 +43,7 @@ class _WriteState extends State<Write> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 60, left: 30, right: 20),
+            padding: const EdgeInsets.only(top: 60, left: 30, right: 20),
             child: Stack(
               children: [
                 Text(
@@ -67,7 +68,7 @@ class _WriteState extends State<Write> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 30, left: 140, right: 20),
+            padding: const EdgeInsets.only(top: 10, left: 140, right: 20),
             child: Text(
               formattedDate.isNotEmpty ? formattedDate : 'Date not available',
               style: TextStyle(
@@ -78,25 +79,28 @@ class _WriteState extends State<Write> {
               ),
             ),
           ),
-          const SizedBox(height: 30),
-          Flexible(
-            child: Center(
-              child: TitleContainer(
-                controller: title,
-                obscureText: false,
-                number: false,
-              ),
+          const SizedBox(height: 5),
+          Center(
+            child: TitleContainer(
+              controller: title,
+              obscureText: false,
+              number: false,
             ),
           ),
-          const SizedBox(height: 30),
           Flexible(
-            child: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 1, left: 35),
               child: DairyController(
                 controller: dairy,
                 obscureText: false,
                 number: false,
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                bottom: 10.0), // Adjusts space between button and navbar
+            child: Center(child: NextButton()),
           ),
         ],
       ),
