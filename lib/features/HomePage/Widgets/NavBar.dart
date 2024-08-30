@@ -5,7 +5,7 @@ import 'package:my_journey/features/SettingsPage/Screens/settings.dart';
 import 'package:my_journey/features/AllDairiesPage/Screens/alldiaries.dart';
 
 class NavBar extends StatelessWidget {
-  final int currentIndex;
+  final int currentIndex; 
   const NavBar({super.key, required this.currentIndex});
 
   void _onItemTapped(BuildContext context, int index) {
