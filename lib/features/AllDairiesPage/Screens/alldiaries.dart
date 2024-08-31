@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Alldiaries extends StatefulWidget {
+class Alldiaries extends StatelessWidget {
   const Alldiaries({super.key});
 
   @override
-  State<Alldiaries> createState() => _AlldiariesState();
-}
-
-class _AlldiariesState extends State<Alldiaries> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        const SizedBox(height: 110),
+        Center(
+            child: Container(
+          height: 300,
+          width: 300,
+          child: Image.asset('assets/Empty.png'),
+        ))
+      ],
+    );
   }
 }

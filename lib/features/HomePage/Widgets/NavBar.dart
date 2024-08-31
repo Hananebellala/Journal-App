@@ -3,9 +3,10 @@ import 'package:my_journey/features/HomePage/Screens/Home.dart';
 import 'package:my_journey/features/WritePage/Screens/Write.dart';
 import 'package:my_journey/features/SettingsPage/Screens/settings.dart';
 import 'package:my_journey/features/AllDairiesPage/Screens/alldiaries.dart';
+import 'package:my_journey/features/AllDairiesPage/Screens/together.dart';
 
 class NavBar extends StatelessWidget {
-  final int currentIndex; 
+  final int currentIndex;
   const NavBar({super.key, required this.currentIndex});
 
   void _onItemTapped(BuildContext context, int index) {
@@ -25,7 +26,7 @@ class NavBar extends StatelessWidget {
       case 2:
         if (currentIndex != 2) {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Alldiaries()));
+              context, MaterialPageRoute(builder: (context) => Together()));
         }
         break;
       case 3:
