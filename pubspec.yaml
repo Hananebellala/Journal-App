@@ -51,6 +51,23 @@ flutter:
     - assets/edit.png
     - assets/Back.png
     - assets/Frame 14.png
+    - assets/Lock.png
+    - assets/Points.png
+    - assets/Button (1).png
+    - assets/Button (2).png
+    - assets/Button (3).png
+    - assets/Button (4).png
+    - assets/Button (5).png
+    - assets/Button (6).png
+    - assets/Button (7).png
+    - assets/Button (8).png
+    - assets/Button (9).png
+    - assets/Button (10).png
+    - assets/Points1.png
+    - assets/Points2.png
+    - assets/Points3.png
+    - assets/Points4.png
+
   fonts:
     - family: CormorantUpright
       fonts:
