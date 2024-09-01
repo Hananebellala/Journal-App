@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/features/HomePage/Widgets/NavBar.dart';
 import 'package:my_journey/features/WritePage/Widgets/SaveeButton.dart';
+import 'package:my_journey/features/WritePage/Widgets/Category.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -20,7 +21,6 @@ class _Write2State extends State<Write2> {
   File? _image1;
   File? _image2;
   File? _image3;
-
   final picker = ImagePicker();
 
   Future<void> getImageFromGallery(int index) async {
@@ -89,6 +89,42 @@ class _Write2State extends State<Write2> {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  String selectedCategory = 'Category';
+  Color selectedCategoryColor = const Color(0XFF7469B6);
+
+  void _showCategoryList() {
+    showDialog(
+      context: context,
+      builder: (context) => GestureDetector(
+        onTap: () {
+          Navigator.of(context)
+              .pop(); // Dismiss the dialog when tapping outside
+        },
+        child: Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding:
+              EdgeInsets.all(0), // Ensure no padding around the dialog
+          child: GestureDetector(
+            onTap:
+                () {}, // Prevent the tap event from propagating to the outer GestureDetector
+            child: Center(
+              child: Category(
+                onCategorySelected: (String name, Color color) {
+                  setState(() {
+                    selectedCategory = name;
+                    selectedCategoryColor = color;
+                  });
+                  Navigator.pop(
+                      context); // Close the dialog after selecting a category
+                },
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -192,6 +228,30 @@ class _Write2State extends State<Write2> {
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
                     fontFamily: 'CourierPrime',
+                  ),
+                ),
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () {
+                    _showCategoryList();
+                  },
+                  child: Container(
+                    width: 200,
+                    padding: EdgeInsets.symmetric(vertical: 3),
+                    decoration: BoxDecoration(
+                      color: selectedCategoryColor,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      selectedCategory,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'CourierPrime',
+                      ),
+                    ),
                   ),
                 ),
               ],

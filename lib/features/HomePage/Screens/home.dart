@@ -199,7 +199,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: 40),
-                Content(
+                const Content(
                     category: 'daily',
                     title: 'First Dairy',
                     cover: 'assets/Profilepic.png'),
