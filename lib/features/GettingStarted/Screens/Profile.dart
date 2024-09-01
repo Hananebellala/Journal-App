@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:my_journey/features/GettingStarted/Widgets/Skip.dart';
-import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
 import 'package:my_journey/features/GettingStarted/Widgets/Finish.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
 
 class Profile extends StatefulWidget {
   const Profile({required this.userId, required this.name, required this.password, super.key});
@@ -19,6 +18,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   File? _image;
+  String? imagePath; // To store the image path
   final picker = ImagePicker();
 
   // Image Picker function to get image from gallery
@@ -26,20 +26,9 @@ class _ProfileState extends State<Profile> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      String filePath = pickedFile.path;
-      print('Picked file path: $filePath'); // Debugging output
-
-      User updatedUser = User(
-          id: widget.userId,
-          name: widget.name,
-          password: widget.password,
-          profilePic: filePath);
-      UserDao userDao = UserDao();
-      int result = await userDao.updateUser(updatedUser);
-      print('User updated: $result'); // Debugging output
-
       setState(() {
-        _image = File(filePath);
+        _image = File(pickedFile.path);
+        imagePath = pickedFile.path; // Store the image path
       });
     }
   }
@@ -49,20 +38,9 @@ class _ProfileState extends State<Profile> {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      String filePath = pickedFile.path;
-      print('Picked file path: $filePath'); // Debugging output
-
-      User updatedUser = User(
-          id: widget.userId,
-          name: widget.name,
-          password: widget.password,
-          profilePic: filePath);
-      UserDao userDao = UserDao();
-      int result = await userDao.updateUser(updatedUser);
-      print('User updated: $result'); // Debugging output
-
       setState(() {
-        _image = File(filePath);
+        _image = File(pickedFile.path);
+        imagePath = pickedFile.path; // Store the image path
       });
     }
   }
@@ -149,7 +127,15 @@ class _ProfileState extends State<Profile> {
                   ),
                 )),
                 const SizedBox(height: 80),
-                Center(child: _image == null ? SkipButton() : FinishButton())
+                Center(
+                    child: _image == null
+                        ? SkipButton()
+                        : FinishButton(
+                            userId: widget.userId,
+                            name: widget.name,
+                            password: widget.password,
+                            imagePath: imagePath!,
+                          )),
               ],
             ),
           ],

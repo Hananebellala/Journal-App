@@ -4,6 +4,7 @@ import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
 import 'package:my_journey/features/HomePage/Widgets/DayButton.dart';
 import 'package:my_journey/features/HomePage/Widgets/NavBar.dart';
 import 'package:my_journey/features/HomePage/Widgets/Empty.dart';
+import 'package:my_journey/features/HomePage/Widgets/Content.dart';
 import 'package:my_journey/features/HomePage/Widgets/WriteButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -197,7 +198,11 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                Empty(),
+                SizedBox(height: 40),
+                Content(
+                    category: 'daily',
+                    title: 'First Dairy',
+                    cover: 'assets/Profilepic.png'),
               ],
             ),
           ),
