@@ -67,6 +67,7 @@ flutter:
     - assets/Points2.png
     - assets/Points3.png
     - assets/Points4.png
+    - assets/menu.png
 
   fonts:
     - family: CormorantUpright
