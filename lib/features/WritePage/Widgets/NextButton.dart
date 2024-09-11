@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_journey/features/GettingStarted/Widgets/Database.dart';
 import 'package:my_journey/features/WritePage/Screens/Write2.dart';
 
 class NextButton extends StatelessWidget {
-  const NextButton({super.key});
+  final TextEditingController title;
+  final TextEditingController dairy;
+  final String fDate;
+
+  const NextButton({
+    Key? key,
+    required this.title,
+    required this.dairy,
+    required this.fDate,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +25,16 @@ class NextButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         minimumSize: const Size(300, 57),
       ),
-      onPressed: () {
+      onPressed: () async {
+  
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const Write2()),
+          MaterialPageRoute(
+              builder: (context) => Write2(
+                    titleController: title.text,
+                    dairyController: dairy.text,
+                    formattedDate: fDate,
+                  )),
         );
       },
       child: const Text(

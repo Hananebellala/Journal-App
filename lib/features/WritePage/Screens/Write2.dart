@@ -6,9 +6,18 @@ import 'package:intl/intl.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Write2 extends StatefulWidget {
-  const Write2({super.key});
+
+  final String titleController;
+  final String dairyController;
+  final String formattedDate;
+  const Write2(
+      {super.key,
+      required this.titleController,
+      required this.dairyController,
+      required this.formattedDate});
 
   @override
   State<Write2> createState() => _Write2State();
@@ -22,6 +31,7 @@ class _Write2State extends State<Write2> {
   File? _image2;
   File? _image3;
   final picker = ImagePicker();
+  int userId = 0;
 
   Future<void> getImageFromGallery(int index) async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -129,10 +139,18 @@ class _Write2State extends State<Write2> {
     );
   }
 
+   Future<void> _loadUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getInt('userId') ?? 0; // Default to 0 if not found
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     _setFormattedDate();
+    _loadUserId();
   }
 
   void _setFormattedDate() {
@@ -366,7 +384,17 @@ class _Write2State extends State<Write2> {
             ),
           ),
           SizedBox(height: 22),
-          Center(child: SaveeButton()),
+          Center(child: SaveeButton(
+              category: selectedCategory,
+              imagePath1: _image?.path,
+              imagePath2: _image1?.path,
+              imagePath3: _image2?.path,
+              imagePath4: _image3?.path,
+              title: widget.titleController,
+              text: widget.dairyController,
+              date: widget.formattedDate,
+              userId: userId,
+            ),),
         ],
       ),
       bottomNavigationBar: NavBar(currentIndex: 1),

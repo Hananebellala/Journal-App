@@ -13,9 +13,9 @@ class Write extends StatefulWidget {
 }
 
 class _WriteState extends State<Write> {
-  final TextEditingController title = TextEditingController();
-  final TextEditingController dairy = TextEditingController();
-  String formattedDate = '';
+  final TextEditingController titlee = TextEditingController();
+  final TextEditingController dairyy = TextEditingController();
+  String formattedDatee = '';
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _WriteState extends State<Write> {
       final now = DateTime.now();
       final formatter = DateFormat('EEE, MMM d, yyyy');
       setState(() {
-        formattedDate = formatter.format(now);
+        formattedDatee = formatter.format(now);
       });
     } catch (e) {
       print('Error formatting date: $e');
@@ -73,8 +73,8 @@ class _WriteState extends State<Write> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 140, right: 20),
                 child: Text(
-                  formattedDate.isNotEmpty
-                      ? formattedDate
+                  formattedDatee.isNotEmpty
+                      ? formattedDatee
                       : 'Date not available',
                   style: TextStyle(
                     fontSize: 33,
@@ -87,7 +87,7 @@ class _WriteState extends State<Write> {
               const SizedBox(height: 5),
               Center(
                 child: TitleContainer(
-                  controller: title,
+                  controller: titlee,
                   obscureText: false,
                   number: false,
                 ),
@@ -96,7 +96,7 @@ class _WriteState extends State<Write> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 1, left: 35),
                   child: DairyController(
-                    controller: dairy,
+                    controller: dairyy,
                     obscureText: false,
                     number: false,
                   ),
@@ -109,7 +109,12 @@ class _WriteState extends State<Write> {
                 20.0, // Positioning the button above the bottom of the screen
             left: 0,
             right: 0,
-            child: Center(child: NextButton()),
+            child: Center(
+                child: NextButton(
+              title: titlee,
+              dairy: dairyy,
+              fDate: formattedDatee,
+            )),
           ),
         ],
       ),

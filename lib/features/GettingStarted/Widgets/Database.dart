@@ -60,6 +60,27 @@ class DatabaseHelper {
     // Handle other upgrades if necessary
   }
 
+  Future<int> insertEntry(
+    int userId,
+    String date,
+    String title,
+    String text,
+    String? pictures,
+    String category
+  ) async {
+    final db = await database;
+    final journal = Journal(
+      id: null, // Auto-generated
+      userId: userId,
+      date: date,
+      title: title,
+      text: text,
+      pictures: pictures ?? '',
+      category: category,
+    );
+    return await db.insert('journal', journal.toMap());
+  }
+
   
 
 }
